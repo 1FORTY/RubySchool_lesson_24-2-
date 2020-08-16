@@ -47,6 +47,27 @@ post '/contacts' do
   @password = params[:pass]
   @email = params[:email]
 
+  validation = {
+      password: "Вы не ввели пароль",
+      email: "Вы не ввели потовый адрес"
+  }
+
+  validation.each do |key, value|
+    if params[key] == ''
+      @error = value
+    end
+
+    if @password.size < 6
+      @error = 'Ваш пароль слишком простой'
+    elsif !@email.include?('@')
+      @error = 'Вы ввели не почту'
+    end
+  end
+
+  if @error != ''
+		return erb :contacts
+  end
+
 
   erb "Спасибо, мы получили ваши данные. Пароль: #{@password} и почта: #{@email}"
 end
