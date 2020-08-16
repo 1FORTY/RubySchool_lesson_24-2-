@@ -1,4 +1,4 @@
-RubySchool, Lesson 22
+RubySchool, Lesson 24_v2
 ====================
 
-Repository for Lesson 22
+Repository for Lesson 24_v2
