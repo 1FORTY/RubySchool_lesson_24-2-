@@ -38,3 +38,15 @@ post '/visit' do
 	erb "OK, username is #{@username}, #{@phone}, #{@datetime}, #{@barber}, #{@color}..."
 
 end
+
+get '/contacts' do
+  erb :contacts
+end
+
+post '/contacts' do
+  @password = params[:pass]
+  @email = params[:email]
+
+
+  erb "Спасибо, мы получили ваши данные. Пароль: #{@password} и почта: #{@email}"
+end
