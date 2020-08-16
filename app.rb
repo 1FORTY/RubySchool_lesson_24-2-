@@ -24,13 +24,14 @@ post '/visit' do
 
   if @username == ""
     @error = 'Введите имя'
-    return erb :visit
   elsif @phone == ""
 		@error = 'Введите телефон'
-		return erb :visit
 	elsif @datetime == ""
 		@error = 'Введите время'
-		return erb :visit
+  end
+
+  if @error != ""
+    return erb :visit
   end
 
 	erb "OK, username is #{@username}, #{@phone}, #{@datetime}, #{@barber}, #{@color}"
