@@ -29,11 +29,10 @@ post '/visit' do
       datetime: "Введите время"
   }
 
-  validate.each do |key, value|
-    if params[key] == ''
-      @error = value
-      return erb :visit
-    end
+  @error = validate.select {|key,_| params[key] == ""}.values.join(", ")
+
+  if @error != ''
+    return erb :visit
   end
 
 	erb "OK, username is #{@username}, #{@phone}, #{@datetime}, #{@barber}, #{@color}..."
