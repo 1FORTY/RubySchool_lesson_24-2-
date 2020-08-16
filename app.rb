@@ -22,18 +22,20 @@ post '/visit' do
 	@barber = params[:barber]
 	@color = params[:color]
 
-  if @username == ""
-    @error = 'Введите имя'
-  elsif @phone == ""
-		@error = 'Введите телефон'
-	elsif @datetime == ""
-		@error = 'Введите время'
+  # Validation for visit.erb
+  validate = {
+      username: "Введите имя",
+      phone: "Введите телефон",
+      datetime: "Введите время"
+  }
+
+  validate.each do |key, value|
+    if params[key] == ''
+      @error = value
+      return erb :visit
+    end
   end
 
-  if @error != ""
-    return erb :visit
-  end
-
-	erb "OK, username is #{@username}, #{@phone}, #{@datetime}, #{@barber}, #{@color}"
+	erb "OK, username is #{@username}, #{@phone}, #{@datetime}, #{@barber}, #{@color}..."
 
 end
